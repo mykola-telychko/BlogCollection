@@ -83,10 +83,8 @@
         
         .reset-btn {
             padding: 8px 15px;
-            /* background-color: #f8f9fa; */
-            background-color: #ffefef;
-            /* border: 1px solid #ddd; */
-            border: 1px solid #ff7676;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -151,7 +149,11 @@
             .cards-container {
                 grid-template-columns: 1fr;
             }
-            .filter-buttons { justify-content: center; }
+            
+            .filter-buttons {
+                justify-content: center;
+            }
+            
             .reset-btn {
                 margin-left: 0;
                 margin-top: 10px;
@@ -162,9 +164,8 @@
 </head>
 <body>
     <header>
-        <!-- <h1>My Blog Collection</h1> -->
-        <h1>Колекція моїх блогів</h1>
-        <!-- <p>Фільтруйте картки за категоріями або знаходьте за пошуком</p> -->
+        <h1>Термінологічний довідник</h1>
+        <p>Фільтруйте картки за категоріями або знаходьте за пошуком</p>
     </header>
     
     <div class="filter-container">
@@ -172,10 +173,7 @@
         
         <div class="filter-buttons">
             <button class="filter-btn" data-category="technology">Технології</button>
-            <button class="filter-btn" data-category="ai">Штучний iнтелект</button>
-            <button class="filter-btn" data-category="security">КіберБезпека</button>
-            <button class="filter-btn" data-category="ads">Цифрова Реклама</button>
-            <button class="filter-btn" data-category="art">Мистецтво</button>
+            <button class="filter-btn" data-category="security">Безпека</button>
             <button class="filter-btn" data-category="medical">Медицина</button>
             <button class="filter-btn" data-category="legal">Юридичні</button>
             <button class="filter-btn" data-category="finance">Фінанси</button>
@@ -184,27 +182,12 @@
     </div>
     
     <div class="cards-container" id="cards-container">
-        <!-- cards -->
+        <!-- Картки будуть додані через JavaScript -->
     </div>
     
     <script>
+        // Дані карток
         const cardsData = [
-      
-            {
-                title: "Українське мистецтво",
-                description: "Мова розмітки гіпертексту, основа веб-сторінок.",
-                category: "art"
-            },
-            {
-                title: "Мистецтвознавство",
-                description: "Мова стилів для опису зовнішнього вигляду документів.",
-                category: "art"
-            },
-            {
-                title: "Сучасне мистецтво",
-                description: "Мова розмсторінок.",
-                category: "art"
-            },
             {
                 title: "HTML",
                 description: "Мова розмітки гіпертексту, основа веб-сторінок.",
@@ -214,16 +197,6 @@
                 title: "CSS",
                 description: "Мова стилів для опису зовнішнього вигляду документів.",
                 category: "technology"
-            },
-            {
-                title: "AI",
-                description: "Мова розмітки гіпертексту, основа веб-сторінок.",
-                category: "ai"
-            },
-            {
-                title: "ML",
-                description: "Мова стилів для опису зовнішнього вигляду документів.",
-                category: "ai"
             },
             {
                 title: "JavaScript",
@@ -251,11 +224,6 @@
                 category: "finance"
             },
             {
-                title: "CPI2",
-                description: " показник інфляції.",
-                category: "finance"
-            },
-            {
                 title: "ECG",
                 description: "Електрокардіограма, метод діагностики серця.",
                 category: "medical"
@@ -269,32 +237,7 @@
                 title: "Phishing",
                 description: "Шахрайський метод отримання конфіденційної інформації.",
                 category: "security"
-            },
-            {
-                title: "sfbsfb",
-                description: "Мова рінок.",
-                category: "ads"
-            },
-            {
-                title: "wdc wdcwd",
-                description: "Мова розова веб-сторінок.",
-                category: "ads"
-            },
-            {
-                title: "efbefb",
-                description: "Мовдокументів.",
-                category: "ads"
-            },
-            {
-                title: "rtb",
-                description: "Мова розмсторінок.",
-                category: "ads"
-            },
-            {
-                title: "Історія реклами",
-                description: "Мова розмітки гіпертексту, основа веб-сторінок.",
-                category: "ads"
-            },
+            }
         ];
         
         // Отримуємо елементи DOM
@@ -396,15 +339,22 @@
         // Ініціалізація сторінки
         function init() {
             displayCards(cardsData);
+            
             // Додаємо обробники подій для кнопок фільтрів
             filterButtons.forEach(btn => {
                 btn.addEventListener('click', () => {
                     updateActiveFilters(btn.dataset.category);
                 });
             });
+            
+            // Додаємо обробник для кнопки скидання
             resetBtn.addEventListener('click', resetFilters);
+            
+            // Додаємо обробник для поля пошуку
             searchBox.addEventListener('input', handleSearch);
         }
+        
+        // Запускаємо ініціалізацію при завантаженні сторінки
         window.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
