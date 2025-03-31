@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Картки з термінами</title>
+    <title>Блоги</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <style>
         :root {
             --primary-color: #4a6fa5;
@@ -61,26 +62,25 @@
             gap: 8px;
             margin-bottom: 10px;
         }
-        
         .filter-btn {
             padding: 8px 15px;
-            background-color: #e9ecef;
+            /* background-color: #e9ecef; */
+            background-color: #e2f6e3;
+            border: 1px solid #00ae34 !important;
             border: none;
             border-radius: 20px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 14px;
         }
-        
-        .filter-btn:hover {
+        .filter-btn:hover { 
             background-color: #dee2e6;
-        }
-        
+         }
         .filter-btn.active {
             background-color: var(--primary-color);
+            border: 1px solid #61a1ff !important;
             color: white;
         }
-        
         .reset-btn {
             padding: 8px 15px;
             /* background-color: #f8f9fa; */
@@ -93,11 +93,7 @@
             margin-left: auto;
             font-size: 14px;
         }
-        
-        .reset-btn:hover {
-            background-color: #e9ecef;
-        }
-        
+        .reset-btn:hover { background-color: #e9ecef; }
         .cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -105,7 +101,6 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        
         .card {
             background: white;
             border-radius: 8px;
@@ -113,13 +108,10 @@
             overflow: hidden;
             transition: transform 0.3s ease;
         }
-        
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
+        .card:hover { transform: translateY(-5px); }
         .card-header {
-            background-color: var(--primary-color);
+            /* background-color: var(--primary-color); */
+            background-color: #61a1ff;
             color: white;
             padding: 15px;
             font-size: 18px;
@@ -139,14 +131,12 @@
             font-size: 12px;
             margin-bottom: 10px;
         }
-        
         .no-results {
             grid-column: 1 / -1;
             text-align: center;
             padding: 40px;
             color: #666;
         }
-        
         @media (max-width: 768px) {
             .cards-container {
                 grid-template-columns: 1fr;
@@ -163,7 +153,7 @@
 <body>
     <header>
         <!-- <h1>My Blog Collection</h1> -->
-        <h1>Колекція моїх блогів</h1>
+        <h1>Мої блоги</h1>
         <!-- <p>Фільтруйте картки за категоріями або знаходьте за пошуком</p> -->
     </header>
     
@@ -335,9 +325,9 @@
                 cardElement.dataset.category = card.category;
                 
                 cardElement.innerHTML = `
-                    <div class="card-header">${card.title}</div>
+                    <div class="card-header" >${card.title}</div>
                     <div class="card-body">
-                        <span class="card-category">${getCategoryName(card.category)}</span>
+                        <span class="card-category" >${getCategoryName(card.category)}</span>
                         <p>${card.description}</p>
                     </div>
                 `;
