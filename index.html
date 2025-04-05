@@ -22,7 +22,8 @@
         }
         
         body {
-            background-color: #f5f7fa;
+            /* background-color: #f5f7fa; */
+            background-color: #fae27e45;
             color: #333;
             line-height: 1.6;
             padding: 20px;
@@ -162,6 +163,7 @@
         
         <div class="filter-buttons">
             <button class="filter-btn" data-category="technology">Технології</button>
+            <button class="filter-btn" data-category="math">Математика</button>
             <button class="filter-btn" data-category="ai">Штучний iнтелект</button>
             <button class="filter-btn" data-category="security">КіберБезпека</button>
             <button class="filter-btn" data-category="ads">Цифрова Реклама</button>
@@ -179,111 +181,161 @@
     
     <script>
         const cardsData = [
-      
+            {
+                title: "Історія математики",
+                description: "Всі періоди розвитку математичної науки",
+                category: "math",
+                src: "#"
+            },
+            {
+                title: "Бібліотека і замітки",
+                description: "Скани методичок і книг, рецензії на книги, замітки і мої вправи.",
+                category: "math",
+                src: "#"
+            },
+            {
+                title: "Математичний тренер",
+                description: "Мова стилів для опису зовнішнього вигляду документів.",
+                category: "math",
+                src: "#"
+            },
+            {
+                title: "Агрегатор новин",
+                description: "Новини про математику з усього світу",
+                category: "math",
+                src: "#"
+            },
             {
                 title: "Українське мистецтво",
                 description: "Мова розмітки гіпертексту, основа веб-сторінок.",
-                category: "art"
+                category: "art",
+                src: "#"
             },
             {
                 title: "Мистецтвознавство",
                 description: "Мова стилів для опису зовнішнього вигляду документів.",
-                category: "art"
+                category: "art",
+                src: "#"
             },
             {
                 title: "Сучасне мистецтво",
                 description: "Мова розмсторінок.",
-                category: "art"
+                category: "art",
+                src: "#"
+            },
+            {
+                title: "Історія мистецтва",
+                description: "Мова розмсторінок.",
+                category: "art",
+                src: "#"
             },
             {
                 title: "HTML",
                 description: "Мова розмітки гіпертексту, основа веб-сторінок.",
-                category: "technology"
+                category: "technology",
+                src: "#"
             },
             {
                 title: "CSS",
                 description: "Мова стилів для опису зовнішнього вигляду документів.",
-                category: "technology"
+                category: "technology",
+                src: "#"
             },
             {
                 title: "AI",
                 description: "Мова розмітки гіпертексту, основа веб-сторінок.",
-                category: "ai"
+                category: "ai",
+                src: "#"
             },
             {
                 title: "ML",
                 description: "Мова стилів для опису зовнішнього вигляду документів.",
-                category: "ai"
+                category: "ai",
+                src: "#"
             },
             {
                 title: "JavaScript",
                 description: "Мова програмування для створення інтерактивних веб-сторінок.",
-                category: "technology"
+                category: "technology",
+                src: "#"
             },
             {
                 title: "GDPR",
                 description: "Загальний регламент щодо захисту даних в ЄС.",
-                category: "legal"
+                category: "legal",
+                src: "#"
             },
             {
                 title: "Firewall",
                 description: "Система безпеки, що контролює мережевий трафік.",
-                category: "security"
+                category: "security",
+                src: "#"
             },
             {
                 title: "VPN",
                 description: "Віртуальна приватна мережа для безпечного з'єднання.",
-                category: "security"
+                category: "security",
+                src: "#"
             },
             {
                 title: "CPI",
                 description: "Індекс споживчих цін, показник інфляції.",
-                category: "finance"
+                category: "finance",
+                src: "#"
             },
             {
                 title: "CPI2",
                 description: " показник інфляції.",
-                category: "finance"
+                category: "finance",
+                src: "#"
             },
             {
                 title: "ECG",
                 description: "Електрокардіограма, метод діагностики серця.",
-                category: "medical"
+                category: "medical",
+                src: "#"
             },
             {
                 title: "API",
                 description: "Інтерфейс програмування додатків для взаємодії програм.",
-                category: "technology"
+                category: "technology",
+                src: "#"
             },
             {
                 title: "Phishing",
                 description: "Шахрайський метод отримання конфіденційної інформації.",
-                category: "security"
+                category: "security",
+                src: "#"
             },
             {
                 title: "sfbsfb",
                 description: "Мова рінок.",
-                category: "ads"
+                category: "ads",
+                src: "#"
             },
             {
                 title: "wdc wdcwd",
                 description: "Мова розова веб-сторінок.",
-                category: "ads"
+                category: "ads",
+                src: "#"
             },
             {
                 title: "efbefb",
                 description: "Мовдокументів.",
-                category: "ads"
+                category: "ads",
+                src: "#"
             },
             {
                 title: "rtb",
                 description: "Мова розмсторінок.",
-                category: "ads"
+                category: "ads",
+                src: "#"
             },
             {
                 title: "Історія реклами",
                 description: "Мова розмітки гіпертексту, основа веб-сторінок.",
-                category: "ads"
+                category: "ads",
+                src: "#"
             },
         ];
         
