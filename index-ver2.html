@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Блоги</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+  
+      <style>
+:root {
+  --accent: #4f46e5;
+  --bg: #f5f7fb;
+  --card-bg: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  padding: 24px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 6px;
+}
+
+.filter-container {
+  max-width: 900px;
+  margin: 0 auto 32px;
+  background: var(--card-bg);
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.06);
+}
+
+.search-box {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  margin-bottom: 14px;
+  font-size: 15px;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-btn {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid #ddd;
+  background: #f1f5f9;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.filter-btn:hover {
+  background: #e0e7ff;
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.reset-btn {
+  margin-left: auto;
+  background: #fee2e2;
+  border: 1px solid #ef4444;
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+.cards-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+  gap: 20px;
+}
+
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.05);
+  transition: .25s;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,.1);
+}
+
+.card-header {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.card-category {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--accent);
+  background: #eef2ff;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+
+.card-body p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.no-results {
+  grid-column: 1/-1;
+  text-align: center;
+  color: var(--muted);
+}
+</style>
+
+
+    
+        
+    
+    </style>
+</head>
+<body>
+    <header>
+        <!-- <h1>My Blog Collection</h1> -->
+        <h1>Мої блоги</h1>
+        <!-- <p>Фільтруйте картки за категоріями або знаходьте за пошуком</p> -->
+    </header>
+    
+    <div class="filter-container">
+        <input type="text" class="search-box" id="search-box" placeholder="Пошук за назвою або описом...">
+        
+        <div class="filter-buttons">
+            <button class="filter-btn" data-category="technology">Технології</button>
+            <button class="filter-btn" data-category="math">Математика</button>
+            <button class="filter-btn" data-category="ai">Штучний iнтелект</button>
+            <button class="filter-btn" data-category="security">КіберБезпека</button>
+            <button class="filter-btn" data-category="ads">Цифрова Реклама</button>
+            <button class="filter-btn" data-category="art">Мистецтво</button>
+            <button class="filter-btn" data-category="medical">Медицина</button>
+            <button class="filter-btn" data-category="legal">Юридичні</button>
+            <button class="filter-btn" data-category="finance">Фінанси</button>
+            <button class="reset-btn" id="reset-btn">Скинути фільтри</button>
+        </div>
+    </div>
+    
+    <div class="cards-container" id="cards-container">
+        <!-- cards -->
+    </div>
+    
+    <script>
+        const cardsData = [
+            {
+                title: "Історія математики",
+                description: "Всі періоди розвитку математичної науки",
+                category: "math",
+                src: "#"
+            },
+            {
+                title: "Бібліотека і замітки",
+                description: "Скани методичок і книг, рецензії на книги, замітки і мої вправи.",
+                category: "math",
+                src: "#"
+            },
+            {
+                title: "Математичний тренер",
+                description: "Мова стилів для опису зовнішнього вигляду документів.",
+                category: "math",
+                src: "#"
+            },
+            {
+                title: "Агрегатор новин",
+                description: "Новини про математику з усього світу",
+                category: "math",
+                src: "#"
+            },
+            {
+                title: "Українське мистецтво",
+                description: "Мова розмітки гіпертексту, основа веб-сторінок.",
+                category: "art",
+                src: "#"
+            },
+            {
+                title: "Мистецтвознавство",
+                description: "Мова стилів для опису зовнішнього вигляду документів.",
+                category: "art",
+                src: "#"
+            },
+            {
+                title: "Сучасне мистецтво",
+                description: "Мова розмсторінок.",
+                category: "art",
+                src: "#"
+            },
+            {
+                title: "Історія мистецтва",
+                description: "Мова розмсторінок.",
+                category: "art",
+                src: "#"
+            },
+            {
+                title: "HTML",
+                description: "Мова розмітки гіпертексту, основа веб-сторінок.",
+                category: "technology",
+                src: "#"
+            },
+            {
+                title: "CSS",
+                description: "Мова стилів для опису зовнішнього вигляду документів.",
+                category: "technology",
+                src: "#"
+            },
+            {
+                title: "AI",
+                description: "Мова розмітки гіпертексту, основа веб-сторінок.",
+                category: "ai",
+                src: "#"
+            },
+            {
+                title: "ML",
+                description: "Мова стилів для опису зовнішнього вигляду документів.",
+                category: "ai",
+                src: "#"
+            },
+            {
+                title: "JavaScript",
+                description: "Мова програмування для створення інтерактивних веб-сторінок.",
+                category: "technology",
+                src: "#"
+            },
+            {
+                title: "GDPR",
+                description: "Загальний регламент щодо захисту даних в ЄС.",
+                category: "legal",
+                src: "#"
+            },
+            {
+                title: "Firewall",
+                description: "Система безпеки, що контролює мережевий трафік.",
+                category: "security",
+                src: "#"
+            },
+            {
+                title: "VPN",
+                description: "Віртуальна приватна мережа для безпечного з'єднання.",
+                category: "security",
+                src: "#"
+            },
+            {
+                title: "CPI",
+                description: "Індекс споживчих цін, показник інфляції.",
+                category: "finance",
+                src: "#"
+            },
+            {
+                title: "CPI2",
+                description: " показник інфляції.",
+                category: "finance",
+                src: "#"
+            },
+            {
+                title: "ECG",
+                description: "Електрокардіограма, метод діагностики серця.",
+                category: "medical",
+                src: "#"
+            },
+            {
+                title: "API",
+                description: "Інтерфейс програмування додатків для взаємодії програм.",
+                category: "technology",
+                src: "#"
+            },
+            {
+                title: "Phishing",
+                description: "Шахрайський метод отримання конфіденційної інформації.",
+                category: "security",
+                src: "#"
+            },
+            {
+                title: "sfbsfb",
+                description: "Мова рінок.",
+                category: "ads",
+                src: "#"
+            },
+            {
+                title: "wdc wdcwd",
+                description: "Мова розова веб-сторінок.",
+                category: "ads",
+                src: "#"
+            },
+            {
+                title: "efbefb",
+                description: "Мовдокументів.",
+                category: "ads",
+                src: "#"
+            },
+            {
+                title: "rtb",
+                description: "Мова розмсторінок.",
+                category: "ads",
+                src: "#"
+            },
+            {
+                title: "Історія реклами",
+                description: "Мова розмітки гіпертексту, основа веб-сторінок.",
+                category: "ads",
+                src: "#"
+            },
+        ];
+        
+        // Отримуємо елементи DOM
+        const cardsContainer = document.getElementById('cards-container');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const searchBox = document.getElementById('search-box');
+        
+        // Поточний стан фільтрів
+        let activeFilters = [];
+        let searchQuery = '';
+        
+        // Функція для відображення карток
+        function displayCards(cards) {
+            cardsContainer.innerHTML = '';
+            
+            const filteredCards = cards.filter(card => {
+                // Фільтрація за категоріями
+                const categoryMatch = activeFilters.length === 0 || 
+                                     activeFilters.includes(card.category);
+                
+                // Фільтрація за пошуковим запитом
+                const searchMatch = searchQuery === '' || 
+                                   card.title.toLowerCase().includes(searchQuery) || 
+                                   card.description.toLowerCase().includes(searchQuery);
+                
+                return categoryMatch && searchMatch;
+            });
+            
+            if (filteredCards.length === 0) {
+                cardsContainer.innerHTML = '<div class="no-results">Нічого не знайдено за обраними критеріями</div>';
+                return;
+            }
+            
+            filteredCards.forEach(card => {
+                const cardElement = document.createElement('div');
+                cardElement.className = 'card';
+                cardElement.dataset.category = card.category;
+                
+                cardElement.innerHTML = `
+                    <div class="card-header" >${card.title}</div>
+                    <div class="card-body">
+                        <span class="card-category" >${getCategoryName(card.category)}</span>
+                        <p>${card.description}</p>
+                    </div>
+                `;
+                
+                cardsContainer.appendChild(cardElement);
+            });
+        }
+        
+        // Функція для отримання назви категорії
+        function getCategoryName(categoryValue) {
+            const button = Array.from(filterButtons).find(btn => btn.dataset.category === categoryValue);
+            return button ? button.textContent : categoryValue;
+        }
+        
+        // Функція для оновлення активних фільтрів
+        function updateActiveFilters(category) {
+            const index = activeFilters.indexOf(category);
+            
+            if (index === -1) {
+                activeFilters.push(category);
+            } else {
+                activeFilters.splice(index, 1);
+            }
+            
+            // Оновлюємо стан кнопок
+            filterButtons.forEach(btn => {
+                if (activeFilters.includes(btn.dataset.category)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            displayCards(cardsData);
+        }
+        
+        // Функція для скидання фільтрів
+        function resetFilters() {
+            activeFilters = [];
+            searchQuery = '';
+            searchBox.value = '';
+            
+            filterButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            displayCards(cardsData);
+        }
+        
+        // Функція для обробки пошуку
+        function handleSearch() {
+            searchQuery = searchBox.value.toLowerCase().trim();
+            displayCards(cardsData);
+        }
+        
+        // Ініціалізація сторінки
+        function init() {
+            displayCards(cardsData);
+            // Додаємо обробники подій для кнопок фільтрів
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    updateActiveFilters(btn.dataset.category);
+                });
+            });
+            resetBtn.addEventListener('click', resetFilters);
+            searchBox.addEventListener('input', handleSearch);
+        }
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
